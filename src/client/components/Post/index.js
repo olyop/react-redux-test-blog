@@ -11,11 +11,11 @@ import "./index.scss"
 const bem = componentClassNames("Post")
 
 const Post = ({ id, userId, title, body }) => (
-  <button className={bem("")}>
-    <h2 className={bem("title")}>{id}. {capitalize(title)}</h2>
+  <div className={bem("")}>
+    <h2 className={bem("title")}>{capitalize(title)}</h2>
     <UserHeader userId={userId} />
     <p className={bem("body")}>{capitalize(body)}</p>
-  </button>
+  </div>
 )
 
 Post.propTypes = propTypes

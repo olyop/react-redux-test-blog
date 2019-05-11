@@ -5,6 +5,7 @@ import Post from "../Post"
 import { componentClassNames } from "../../helpers"
 import { fetchPosts } from "../../actions"
 import { connect } from "react-redux"
+import { sortBy } from "lodash"
 
 import "./index.scss"
 
@@ -20,7 +21,7 @@ class Posts extends Component {
     return (
       <div className={bem("")}>
         {posts.length === 0 ? null : <Fragment>
-          {posts.map(post => (
+          {sortBy(posts, "title").map(post => (
             <Post {...post} key={post.id} />
           ))}
         </Fragment>}
