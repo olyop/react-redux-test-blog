@@ -1,0 +1,44 @@
+.Post {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  background-color: transparent;
+  padding: 1.5rem;
+  transition: .2s all;
+  outline: none;
+  border: none;
+  border-bottom: 0.2rem solid #E0E0E0;
+  cursor: pointer;
+  &:hover {
+    background-color: #EEEEEE;
+  }
+  &:active {
+    animation: postClick .2s ease-out;
+  }
+  &__title {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+  }
+  &__body {
+    text-align: left;
+    font-size: 1.6rem;
+    margin: 0;
+  }
+}
+
+@keyframes postClick {
+  0% {
+    transform: translateX(0);
+    box-shadow: none;
+  }
+  33% {
+    transform: translateX(-0.1rem);
+  }
+  66% {
+    transform: translateX(0.1rem);
+  }
+  100% {
+    transform: translate(0);
+  }
+}

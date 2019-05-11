@@ -1,8 +1,10 @@
-import React, { Component } from "react"
+import React, { Component, Fragment } from "react"
 
-import { componentClassNames } from "../../../helpers"
-import { connect } from "react-redux"
+import Post from "../Post"
+
+import { componentClassNames } from "../../helpers"
 import { fetchPosts } from "../../actions"
+import { connect } from "react-redux"
 
 import "./index.scss"
 
@@ -14,12 +16,20 @@ class Posts extends Component {
     fetchPosts()
   }
   render() {
+    const { posts } = this.props
     return (
       <div className={bem("")}>
-        Posts
+        {posts.length === 0 ? null : <Fragment>
+          {posts.map(post => (
+            <Post {...post} key={post.id} />
+          ))}
+        </Fragment>}
       </div>
     )
   }
 }
 
-export default connect(null, { fetchPosts })(Posts)
+const mapStateToProps = ({ posts }) => ({ posts })
+const mapDispatchToProps = { fetchPosts }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Posts)

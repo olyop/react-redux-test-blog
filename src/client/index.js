@@ -1,19 +1,26 @@
-import React from "react"
+import React, { Fragment } from "react"
 import ReactDOM from "react-dom"
 
-import Posts from "./components/Posts"
 import { BrowserRouter as Router } from "react-router-dom"
+import Header from "./components/Header"
+import Posts from "./components/Posts"
 
+import { createStore, applyMiddleware } from "redux"
 import { Provider } from "react-redux"
-import { createStore } from "redux"
 import reducers from "./reducers"
+import thunk from "redux-thunk"
 
 import "./index.scss"
 
+const store = createStore(reducers, applyMiddleware(thunk))
+
 ReactDOM.render(
-  <Provider store={createStore(reducers)}>
+  <Provider store={store}>
     <Router>
-      <Posts />
+      <Fragment>
+        <Header />
+        <Posts />
+      </Fragment>
     </Router>
   </Provider>,
   document.getElementById("root")

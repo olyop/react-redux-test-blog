@@ -1,0 +1,14 @@
+.UserHeader {
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  font-size: 1.6rem;
+  margin-bottom: .5rem;
+  padding: .3rem;
+  border-radius: .3rem;
+  margin: 0 .3rem .3rem -.3rem;
+  &:hover {
+    background-color: #BDBDBD;
+  }
+}
