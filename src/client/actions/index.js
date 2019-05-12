@@ -1,15 +1,16 @@
+import { pipe, postsUserIds } from "../helpers"
 import { jsonPlaceholder } from "../globals"
-import { uniq, map, forEach } from "lodash"
-import { pipe } from "../helpers"
+import { forEach, noop } from "lodash"
 
-export const fetchPosts = callback => dispatch => {
+export const fetchPosts = (callback = noop) => dispatch => {
   jsonPlaceholder.get("/posts")
     .then(res => {
+      const posts = res.data
       dispatch({
         type: "FETCH_POSTS",
-        payload: res.data
+        payload: posts
       })
-      callback(res.data)
+      callback(posts)
     })
 }
 
@@ -23,8 +24,15 @@ export const fetchUser = userId => dispatch => {
     })
 }
 
-export const fetchPostsAndUsers = () => (dispatch, getState) => {
-  dispatch(fetchPosts(posts => {
-    forEach(uniq(map(posts, ({ userId }) => userId)), userId => dispatch(fetchUser(userId)))
-  }))
+export const fetchPostsAndUsers = () => dispatch => {
+  dispatch(
+    fetchPosts(
+      posts => {
+        forEach(
+          postsUserIds(posts),
+          userId => dispatch(fetchUser(userId))
+        )
+      }
+    )
+  )
 }

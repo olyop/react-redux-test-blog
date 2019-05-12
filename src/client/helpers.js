@@ -1,4 +1,4 @@
-import { join, isString, isObject, isUndefined } from "lodash"
+import { join, isString, isObject, isUndefined, uniq, map } from "lodash"
 
 export const pipe = x => (...fns) => fns.reduce((v, f) => f(v), x)
 
@@ -41,3 +41,5 @@ export const componentClassNames = componentName => (...args) => (
     )
     .trim()
 )
+
+export const postsUserIds = posts => uniq(map(posts, ({ userId }) => userId))

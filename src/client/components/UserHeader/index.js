@@ -2,6 +2,7 @@ import React from "react"
 
 import { componentClassNames } from "../../helpers"
 import { connect } from "react-redux"
+import { isUndefined } from "lodash"
 import { propTypes } from "./props"
 
 import "./index.scss"
@@ -10,12 +11,15 @@ const bem = componentClassNames("UserHeader")
 
 const UserHeader = ({ user }) => (
   <button className={bem("")}>
-    {user === undefined ? "Loading..." : user.name}
+    {user.name === undefined ? "Loading..." : user.name}
   </button>
 )
 
-const mapStateToProps = ({ users }, { userId }) => ({
-  user: users.length === 0 ? {} : users.find(({ id }) => id === userId)
-})
+const mapStateToProps = ({ users }, { userId }) => {
+  const user = users.find(({ id }) => id === userId)
+  return ({
+    user: isUndefined(user) ? {} : user
+  })
+}
 
 export default connect(mapStateToProps)(UserHeader)
