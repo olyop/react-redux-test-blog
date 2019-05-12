@@ -23,5 +23,5 @@ ReactDOM.render(
       </Fragment>
     </Router>
   </Provider>,
-  document.getElementById("root")
+  document.getElementById("App")
 )

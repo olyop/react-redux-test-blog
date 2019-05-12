@@ -8,9 +8,9 @@
     "watch": "cls && webpack --watch --env.mode production",
     "dev-server": "cls && webpack-dev-server --env.mode development",
     "server": "cls && cd src/server && nodemon bin/www && cd ../..",
+    "dev": "cls && concurrently \"npm run dev-server\" \"npm run server\"",
     "updates": "git checkout . && git remote update && git pull",
-    "push": "git add -A && git commit -m \"Update\" && git push -u origin master",
-    "dev": "concurrently \"npm run dev-server\" \"npm run server\""
+    "push": "git add -A && git commit -m \"Update\" && git push -u origin master"
   },
   "repository": {
     "type": "git",
