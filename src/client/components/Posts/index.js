@@ -21,7 +21,9 @@ class Posts extends Component {
     const sortedPosts = sortBy(posts, "title")
     return (
       <section className={bem("")}>
-        {posts.length === 0 ? null : <Fragment>
+        {posts.length === 0 ? <Fragment>
+          <h2>Loading...</h2>
+        </Fragment> : <Fragment>
           {sortedPosts.map(post => (
             <Post
               {...post}

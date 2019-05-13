@@ -1,7 +1,7 @@
-import React, { Fragment } from "react"
+import React from "react"
 import ReactDOM from "react-dom"
 
-import { BrowserRouter as Router } from "react-router-dom"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 import Header from "./components/Header"
 import Posts from "./components/Posts"
 
@@ -17,10 +17,12 @@ const store = createStore(reducers, applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
     <Router>
-      <Fragment>
-        <Header />
-        <Posts />
-      </Fragment>
+      <Switch>
+        <Route path="/">
+          <Header />
+          <Posts />
+        </Route>
+      </Switch>
     </Router>
   </Provider>,
   document.getElementById("App")
